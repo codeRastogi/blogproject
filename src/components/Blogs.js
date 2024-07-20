@@ -14,6 +14,7 @@ const Blogs = () => {
                         size={220}
                         aria-label="Loading Spinner"
                         data-testid="loader"
+                        color='white'
                     />
                 </div>
             ) : (
