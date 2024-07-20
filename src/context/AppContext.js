@@ -5,12 +5,12 @@ import { baseUrl } from "../baseUrl";
 export const AppContext = createContext();
 
 
-function AppContextProvider(childrens) {
+function AppContextProvider({ children }) {
     const [pageNumber, setPageNumeber] = useState(1);
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [totalPages, setTotalPages] = useState(null);
-    
+
 
     const value = {
         posts,
@@ -26,7 +26,7 @@ function AppContextProvider(childrens) {
     };
 
 
-    async function fetchBlogPosts(page = 1){
+    async function fetchBlogPosts(page = 1) {
         setLoading(true);
         let url = `${baseUrl}?page=${page}`;
         try {
@@ -42,14 +42,20 @@ function AppContextProvider(childrens) {
             console.log("Failed to fetch")
             setPageNumeber(1);
             setTotalPages(null);
-            setPosts([]);        
+            setPosts([]);
         }
 
         setLoading(false);
     }
 
-    function handlePageChange(page){
+    function handlePageChange(page) {
         setPageNumeber(page);
         fetchBlogPosts(page);
     }
+
+    return <AppContext.Provider value={value}>
+        {children}
+    </AppContext.Provider>
 }
+
+export default AppContextProvider;
