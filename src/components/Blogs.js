@@ -7,7 +7,7 @@ const Blogs = () => {
     const { loading, posts } = useContext(AppContext);
 
     return (
-        <div className='flex flex-col r h-full bg-sky-900 pt-5 pb-5 gap-10'>
+        <div className='flex flex-col r h-full bg-sky-900 pt-5 pb-16 gap-10'>
             {loading ? (
                 <div className=' flex h-screen items-center justify-center'>
                     <ClipLoader
